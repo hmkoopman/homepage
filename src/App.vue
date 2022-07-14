@@ -60,7 +60,7 @@ nav a.router-link-exact-active:hover {
 }
 
 .logo {
-  content: url("@/assets/images/logos/navbar.png");
+  content: url("@/assets/images/navbar.png");
 }
 
 @media (min-width: 1024px) {
@@ -81,7 +81,7 @@ nav a.router-link-exact-active:hover {
 
   .logo {
     margin: auto;
-    content: url("@/assets/images/logos/square.png");
+    content: url("@/assets/images/square.png");
     width: 250px;
     height: 250px;
   }
