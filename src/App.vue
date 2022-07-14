@@ -8,7 +8,7 @@ import HelloWorld from "./components/HelloWorld.vue";
     <img
       alt="Vue logo"
       class="logo"
-      src="@/assets/logo.svg"
+      src="@/assets/images/square.png"
       width="125"
       height="125"
     />
@@ -25,6 +25,68 @@ import HelloWorld from "./components/HelloWorld.vue";
 
   <RouterView />
 </template>
+
+<style>
+nav {
+  width: 100%;
+}
+
+nav .nav-logo {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+}
+
+nav .nav-link {
+  color: hsl(202, 82%, 55%, 1);
+  border-radius: 1rem;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  transition: 0.4s;
+  width: 100%;
+}
+
+nav .nav-link:hover {
+  background-color: var(--color-text);
+}
+
+nav a.router-link-exact-active {
+  color: var(--color-text);
+}
+
+nav a.router-link-exact-active:hover {
+  background-color: transparent;
+}
+
+.logo {
+  content: url("@/assets/images/logos/navbar.png");
+}
+
+@media (min-width: 1024px) {
+  header .navigation {
+    display: flex;
+    place-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  nav {
+    text-align: center;
+  }
+
+  .nav-link {
+    border-radius: 1rem;
+    padding: 0.5rem 0rem;
+  }
+
+  .logo {
+    margin: auto;
+    content: url("@/assets/images/logos/square.png");
+    width: 250px;
+    height: 250px;
+  }
+}
+</style>
 
 <style scoped>
 header {
