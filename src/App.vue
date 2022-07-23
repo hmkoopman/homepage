@@ -1,14 +1,15 @@
 <template>
-  <!-- <AppNavbar />
-  <main>
-    <RouterView />
-  </main>
-  <AppFooter /> -->
-  <main style="text-align: center; margin-top: 14rem">WORK IN PROGRESS</main>
+  <AppHeader />
+  <Info />
+  <BlauweBaptist />
+  <Contact />
+  <AppFooter />
 </template>
 
 <script setup>
-import AppNavbar from "@/components/Navbar.vue";
-import { RouterView } from "vue-router";
+import AppHeader from "@/components/Header.vue";
+import Info from "@/components/Info.vue";
+import Contact from "@/components/Contact.vue";
+import BlauweBaptist from "@/components/BlauweBaptist.vue";
 import AppFooter from "@/components/Footer.vue";
 </script>

@@ -1,14 +1,10 @@
 import { createApp } from "vue";
 import App from "./App.vue";
-import router from "./router";
-import VueTypedJs from 'vue-typed-js';
-
+import { BootstrapIconsPlugin } from 'bootstrap-icons-vue';
 import "./assets/main.css";
 
 const app = createApp(App);
 
-app.use(router);
-
-app.use(VueTypedJs);
+app.use(BootstrapIconsPlugin);
 
 app.mount("#app");
