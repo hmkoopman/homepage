@@ -1,98 +1,118 @@
 <template>
-  <div class="container">
-    <h1>
-      Coding is
-      <span class="typed-text">{{ typeValue }}</span>
-      <span class="cursor" :class="{ typing: typeStatus }">&nbsp;</span>
-    </h1>
-  </div>
+  <component :is="tagType" class="typewriter">
+    {{ textBefore }}
+    <span class="typed-text">{{ typingValue }}</span>
+    <span class="cursor" :class="{ typing: isTyping }">&nbsp;</span>
+  </component>
 </template>
 
 <script>
+const allowedTags = ["p", "div", "h1", "h2", "h3", "h4", "h5", "h6"];
 export default {
-  data: () => {
+  props: {
+    tagType: {
+      type: String,
+      required: false,
+      default: "p",
+      validator(tagType) {
+        return allowedTags.includes(tagType);
+      },
+    },
+    textBefore: {
+      type: String,
+      required: false,
+    },
+    typingArray: {
+      type: Array,
+      required: true,
+    },
+    typingSpeed: {
+      type: Number,
+      required: false,
+      default: 200,
+    },
+    typingReturnSpeed: {
+      type: Number,
+      required: false,
+      default: 50,
+    },
+  },
+  data() {
     return {
-      typeValue: "",
-      typeStatus: false,
-      typeArray: ["fun", "awesome", "a journey", "life"],
-      typingSpeed: 200,
-      erasingSpeed: 100,
+      allowedTags: ["p", "div", "h1", "h2", "h3", "h4", "h5", "h6"],
+      typingValue: "",
+      isTyping: false,
       newTextDelay: 2000,
-      typeArrayIndex: 0,
-      charIndex: 0,
+      typingArrayIndex: 0,
+      characterIndex: 0,
     };
   },
-  methods: {
-    typeText() {
-      if (this.charIndex < this.typeArray[this.typeArrayIndex].length) {
-        if (!this.typeStatus) {
-          this.typeStatus = true;
-        }
-
-        this.typeValue += this.typeArray[this.typeArrayIndex].charAt(
-          this.charIndex
-        );
-        this.charIndex += 1;
-
-        setTimeout(this.typeText, this.typingSpeed);
-      } else {
-        this.typeStatus = false;
-
-        setTimeout(this.eraseText, this.newTextDelay);
-      }
-    },
-    eraseText() {
-      if (this.charIndex > 0) {
-        if (!this.typeStatus) {
-          this.typeStatus = true;
-        }
-
-        this.typeValue = this.typeArray[this.typeArrayIndex].substring(
-          0,
-          this.charIndex - 1
-        );
-        this.charIndex -= 1;
-        setTimeout(this.eraseText, this.erasingSpeed);
-      } else {
-        this.typeStatus = false;
-        this.typeArrayIndex += 1;
-        if (this.typeArrayIndex >= this.typeArray.length) {
-          this.typeArrayIndex = 0;
-        }
-        setTimeout(this.typeText, this.typingSpeed + 1000);
-      }
-    },
-  },
   created() {
-    setTimeout(this.typeText, this.newTextDelay + 200);
+    setTimeout(this.typing, this.newTextDelay);
+  },
+  methods: {
+    typing() {
+      if (
+        this.characterIndex < this.typingArray[this.typingArrayIndex].length
+      ) {
+        if (this.isTyping) {
+          this.isTyping = false;
+        }
+
+        this.typingValue += this.typingArray[this.typingArrayIndex].charAt(
+          this.characterIndex
+        );
+        this.characterIndex += 1;
+
+        setTimeout(this.typing, this.typingSpeed);
+      } else {
+        this.isTyping = false;
+
+        setTimeout(this.typingReturn, this.newTextDelay);
+      }
+    },
+    typingReturn() {
+      if (this.characterIndex > 0) {
+        if (!this.isTyping) {
+          this.isTyping = true;
+        }
+
+        this.typingValue = this.typingArray[this.typingArrayIndex].substring(
+          0,
+          this.characterIndex - 1
+        );
+        this.characterIndex -= 1;
+
+        setTimeout(this.typingReturn, this.typingReturnSpeed);
+      } else {
+        this.isTyping = false;
+        this.typingArrayIndex += 1;
+
+        if (this.typingArrayIndex >= this.typingArray.length) {
+          this.typingArrayIndex = 0;
+        }
+
+        setTimeout(this.typing, this.typingSpeed + 1000);
+      }
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.container {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+span.typed-text {
+  color: rgba(46, 165, 234, 1);
+}
+span.cursor {
+  display: inline-block;
+  margin-left: 0.2rem;
+  width: 0.2rem;
+  background-color: var(--main-text-color);
+  animation: cursorBlink 1s infinite;
 }
 
-h1 {
-  span.typed-text {
-    color: rgba(46, 165, 234, 1);
-  }
-  span.cursor {
-    display: inline-block;
-    margin-left: 3px;
-    width: 4px;
-    background-color: var(--main-text-color);
-    animation: cursorBlink 1s infinite;
-  }
-
-  span.cursor.typing {
-    animation: none;
-  }
+span.cursor.typing {
+  animation: none;
 }
 
 @keyframes cursorBlink {
