@@ -1,6 +1,7 @@
 <template>
   <AppHeader />
   <Info />
+  <Weather />
   <BlauweBaptist />
   <Contact />
   <AppFooter />
@@ -12,4 +13,5 @@ import Info from "@/components/Info.vue";
 import Contact from "@/components/Contact.vue";
 import BlauweBaptist from "@/components/BlauweBaptist.vue";
 import AppFooter from "@/components/Footer.vue";
+import Weather from "@/components/Weather.vue";
 </script>
