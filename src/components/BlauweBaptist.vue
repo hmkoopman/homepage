@@ -3,7 +3,7 @@
     <h2>Blauwe Baptist</h2>
     <p>De Blauwe Baptist is een project in wording.</p>
     <Typewriter
-      tagtype="p"
+      tagType="p"
       textBefore="Ben jij"
       :typingArray="['blauw?', 'rood?', 'geel?', 'groen?']"
     />
