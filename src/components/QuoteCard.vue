@@ -1,10 +1,10 @@
 <template>
-  <div class="quote">
+  <div class="quote-card">
     <p class="quote-text">
-      {{ quote }}
+      <BIconQuote />{{ quote }}<BIconQuote class="quote-end" />
     </p>
     <p class="quote-author">
-      <i>- {{ author }}</i>
+      <i>{{ author }}</i>
     </p>
   </div>
 </template>
@@ -24,3 +24,15 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.quote-card {
+  border: 3px solid var(--main-border-color);
+  border-radius: 1rem;
+  max-width: 250px;
+}
+
+.quote-end {
+  transform: rotateY(180deg);
+}
+</style>

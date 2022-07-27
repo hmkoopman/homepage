@@ -23,4 +23,6 @@
   --a-text-color: rgba(46, 165, 234, 1);
   --a-text-color-hover: rgba(24, 24, 24, 1);
   --a-bg-color-hover: rgba(46, 165, 234, 1);
+
+  --main-border-color: rgba(46, 165, 234, 1);
 }
