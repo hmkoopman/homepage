@@ -1,5 +1,5 @@
 <template>
-  <component :is="tagType" class="typewriter">
+  <component :is="tagType" class="typewriter" :style="cssProps">
     {{ textBefore }}
     <span class="typed-text">{{ typingValue }}</span>
     <span class="cursor" :class="{ typing: isTyping }">&nbsp;</span>
@@ -14,13 +14,21 @@ export default {
       type: String,
       required: false,
       default: "p",
-      validator(tagType) {
-        return allowedTags.includes(tagType);
-      },
+      validator: (value) => allowedTags.includes(value),
     },
     textBefore: {
       type: String,
       required: false,
+    },
+    textColor: {
+      type: String,
+      required: false,
+      default: "rgba(235, 235, 235, 0.75)",
+    },
+    textTypingColor: {
+      type: String,
+      required: false,
+      default: "rgba(46, 165, 234, 1)",
     },
     typingArray: {
       type: Array,
@@ -96,13 +104,26 @@ export default {
       }
     },
   },
+  computed: {
+    cssProps() {
+      return {
+        "--text-color-typewriter-static": this.textColor,
+        "--text-color-typewriter-typing": this.textTypingColor,
+      };
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-span.typed-text {
-  color: rgba(46, 165, 234, 1);
+.typewriter {
+  color: var(--text-color-typewriter-static);
 }
+
+span.typed-text {
+  color: var(--text-color-typewriter-typing);
+}
+
 span.cursor {
   display: inline-block;
   margin-left: 0.2rem;
