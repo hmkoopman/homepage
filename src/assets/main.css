@@ -46,3 +46,12 @@ a {
 a:hover {
   color: var(--a-text-color);
 }
+
+button {
+  background-color: var(--a-text-color);
+  border: 1px solid var(--a-text-color);
+  border-radius: 1rem;
+  color: var(--main-bg-color);
+  font-size: 1.2rem;
+  padding: 0.5rem;
+}

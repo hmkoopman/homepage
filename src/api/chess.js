@@ -1,20 +1,17 @@
 import axios from 'axios';
 
-const url = 'https://api.chess.com/pub/puzzle';
-const params = {
-   
-}
 const headers = {
-}
+    'Content-Type': 'application/x-chess-pgn',
+};
 
 export default {
-    get() {
-        return axios.get(
-            url, 
-            {
-            headers: headers, 
-            params: params
-            }
-        ).then(response => response.data);
-    }
+  getDailyPuzzle() {
+    return axios.get('https://api.chess.com/pub/puzzle', {headers: headers}).then(response => response.data);
+  },
+  getProfile(username) {
+    return axios.get(`https://api.chess.com/pub/player/${username}`).then(response => response.data);
+  },
+  getCurrentGames(username) {
+    return axios.get(`https://api.chess.com/pub/player/${username}/games`).then(response => response.data);
+  }
 };
