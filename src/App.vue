@@ -1,6 +1,7 @@
 <template>
   <AppHeader />
   <Info />
+  <Chess />
   <BlauweBaptist />
   <Contact />
   <AppFooter />
@@ -9,6 +10,7 @@
 <script setup>
 import AppHeader from "@/components/Header.vue";
 import Info from "@/components/Info.vue";
+import Chess from "@/components/Chess.vue";
 import Contact from "@/components/Contact.vue";
 import BlauweBaptist from "@/components/BlauweBaptist.vue";
 import AppFooter from "@/components/Footer.vue";
